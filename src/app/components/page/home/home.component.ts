@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,15 +28,12 @@ import { NotFoundComponent } from '../../not-found/not-found.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
-    WeatherCardComponent,
+    WeatherCardComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass'
 })
-export class HomeComponent implements OnInit,OnDestroy{
-  ngOnInit(): void {
-    this.handleSearchCity();
-  }
+export class HomeComponent implements OnDestroy{
 
   private formBuilder = inject(FormBuilder);
   private weatherService = inject(WeatherService);
@@ -80,6 +77,7 @@ export class HomeComponent implements OnInit,OnDestroy{
 
     this.searchCityForm.reset();
   }
+
 
   handleOpenModal(): void{
     this.dialogService.open(WeatherCardComponent);

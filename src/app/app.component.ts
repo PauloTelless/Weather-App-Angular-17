@@ -1,3 +1,4 @@
+import { WeatherInfoWindComponent } from './components/weather-info-wind/weather-info-wind.component';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './components/page/home/home.component';
@@ -14,7 +15,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HomeComponent,
     HttpClientModule,
     WeatherCardComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    WeatherInfoWindComponent
   ],
   providers:[
     HttpClient,

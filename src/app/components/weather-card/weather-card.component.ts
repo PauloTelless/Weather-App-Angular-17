@@ -1,9 +1,10 @@
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
-import { Component, Input, inject} from '@angular/core';
+import { Component, Input, Output, inject} from '@angular/core';
 import { WeatherDatas } from '../../models/interfaces/WeatherData';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { NotFoundComponent } from '../not-found/not-found.component';
+import { WeatherInfoWindComponent } from '../weather-info-wind/weather-info-wind.component';
 
 @Component({
   selector: 'app-weather-card',
@@ -11,7 +12,8 @@ import { NotFoundComponent } from '../not-found/not-found.component';
   imports: [
     MatCardModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    WeatherInfoWindComponent
   ],
   templateUrl: './weather-card.component.html',
   styleUrl: './weather-card.component.sass'
@@ -24,8 +26,11 @@ export class WeatherCardComponent{
   @Input() public horaAtualInput!: number;
   @Input() public condicaoClimeInput!: string;
 
-
   handleOpenModalWind(){
-    this.dialogService.open(NotFoundComponent)
+    this.dialogService.open(WeatherInfoWindComponent)
+  }
+
+  handleCloseModalWind(){
+    this.dialogService.closeAll()
   }
 }
