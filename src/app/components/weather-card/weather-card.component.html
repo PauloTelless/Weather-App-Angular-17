@@ -1,0 +1,65 @@
+@if(weatherDatasInput){
+  <body>
+    <div class="card">
+      <span>{{weatherDatasInput.name}}</span>
+      <h1>{{weatherDatasInput.main.temp}}°C</h1>
+      @if(horaAtualInput >= 18 || horaAtualInput <= 5){
+        @if(condicaoClimeInput == 'algumas nuvens'){
+          <img src="../../../assets/img/noite_nuvens.png">
+
+        } @else if(condicaoClimeInput == 'céu limpo'){
+          <img src="../../../assets/img/noite_lua.png">
+
+        } @else if(condicaoClimeInput == 'nuvens dispersas' || condicaoClimeInput == 'nublado'){
+          <img src="../../../assets/img/noite_nuvens.png">
+
+        }  @else if(condicaoClimeInput == 'chuviscos' || condicaoClimeInput == 'chuva moderada' || condicaoClimeInput == 'chuva leve'){
+          <img src="../../../assets/img/chuva_fraca_noite.png">
+
+        } @else if(condicaoClimeInput == 'chuviscos com intensidade de raios'){
+          <img src="../../../assets/img/chuva_raio_noite.png">
+
+        } @else if(condicaoClimeInput == 'névoa'){
+          <img src="../../../assets/img/nevoa.png">
+
+        } @else{
+          <img src="../../../assets/img/noite_lua.png">
+        }
+      }
+
+      @if(horaAtualInput > 5 && horaAtualInput < 18){
+        @if(condicaoClimeInput == 'algumas nuvens'){
+          <img src="../../../assets/img/sol_nuvens.png">
+
+        } @else if(condicaoClimeInput == 'céu limpo'){
+          <img src="../../../assets/img/sol.png">
+
+        } @else if(condicaoClimeInput == 'nuvens dispersas' || condicaoClimeInput == 'nublado'){
+          <img src="../../../assets/img/dia_nuvens.png">
+
+        }  @else if(condicaoClimeInput == 'chuviscos' || condicaoClimeInput == 'chuva moderada' || condicaoClimeInput == 'chuva leve'){
+          <img src="../../../assets/img/sol_chuva_fraca.png">
+
+        } @else if(condicaoClimeInput == 'chuviscos com intensidade de raios'){
+          <img src="../../../assets/img/chuva_raio_dia.png">
+
+        } @else if(condicaoClimeInput == 'névoa'){
+          <img src="../../../assets/img/nevoa.png">
+
+        } @else{
+          <img src="../../../assets/img/sol.png">
+        }
+      }
+      <div class="info">
+      <div class="barometro">
+        <img src="../../../assets/img/vento.png"><p>{{weatherDatasInput.wind.speed}}Km/h</p>
+        <img src="../../../assets/img/umidade.png"><p>{{weatherDatasInput.main.humidity}}%</p>
+      </div>
+      <div class="temps">
+        <img src="../../../assets/img/max_temp.png" alt=""><p>{{weatherDatasInput.main.temp_max}}°C</p>
+        <img src="../../../assets/img/min_temp.png" alt=""><p>{{weatherDatasInput.main.temp_min}}°C</p>
+      </div>
+      </div>
+    </div>
+  </body>
+}
