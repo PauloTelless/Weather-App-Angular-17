@@ -42,4 +42,9 @@ export interface WeatherDatas{
   id: number,
   name: string,
   cod: string
+
+  error: {
+    cod: string,
+    message: string
+  }
 }

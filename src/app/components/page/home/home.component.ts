@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog'
+import { MatDialogModule, MatDialog } from '@angular/material/dialog'
 
 import { FormsModule, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -62,18 +62,23 @@ export class HomeComponent implements OnInit,OnDestroy{
         )
       ).subscribe({
         next: (response) => {
+          this.getTimeNow()
           this.weatherDatas = response
+          console.log(this.weatherDatas)
           this.weatherDatas.main.temp = Math.round(this.weatherDatas.main.temp - 273)
           this.weatherDatas.wind.speed = Math.round(this.weatherDatas.wind.speed * 3.6)
           this.weatherDatas.main.temp_max = Math.round(this.weatherDatas.main.temp_max - 273)
           this.weatherDatas.main.temp_min = Math.round(this.weatherDatas.main.temp_min - 273)
           this.condicaoClime = this.weatherDatas.weather[0].description
-          this.getTimeNow()
           this.handleOpenModal()
           this.handleCloseModal()
+        },
+        error: () => {
+          this.handleOpenModalError()
         }
       })
     }
+
     this.searchCityForm.reset();
   }
 
@@ -88,6 +93,7 @@ export class HomeComponent implements OnInit,OnDestroy{
   handleOpenModalError(): void{
     this.dialogService.open(NotFoundComponent)
   }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
