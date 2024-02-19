@@ -7,10 +7,11 @@
         const city_name = document.getElementById('city_name')
         const city_name_lengh = city_name.textContent.length;
 
-        if (city_name_lengh > 13  && window.matchMedia('(max-width: 768px)'))  {
-          city_name.style.fontSize = '15px'
+        if (city_name_lengh > 13 && city_name_lengh <= 12 && window.matchMedia('(max-width: 768px)'))  {
+          city_name.style.fontSize = '45px'
 
-        } else if (city_name_lengh > 13 && window.matchMedia('(max-width: 768px)')) {
+        }
+        if (city_name_lengh > 13 && window.matchMedia('(max-width: 768px)')) {
           city_name.style.fontSize = '15px'
 
         }  else {
