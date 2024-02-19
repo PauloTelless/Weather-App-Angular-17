@@ -8,7 +8,7 @@
 // export class TrasnformedSizedLengh implements PipeTransform{
 //   transform(value: string | undefined) {
 //     if (value && value.length > 10) {
-//       return value.
+
 //     }
 //   }
 
