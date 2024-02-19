@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog'
 
 import { FormsModule, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +14,7 @@ import { WeatherService } from '../../../services/weather.service';
 import { WeatherDatas } from '../../../models/interfaces/WeatherData';
 
 import { WeatherCardComponent } from '../../weather-card/weather-card.component';
-import { Dialog } from '@angular/cdk/dialog';
+
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -27,23 +27,26 @@ import { Subject, takeUntil } from 'rxjs';
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
-    WeatherCardComponent
+    WeatherCardComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass'
 })
-export class HomeComponent implements OnDestroy{
+export class HomeComponent implements OnInit,OnDestroy{
+  ngOnInit(): void {
+    this.handleSearchCity();
+  }
 
   private formBuilder = inject(FormBuilder);
   private weatherService = inject(WeatherService);
-  private dialogService = inject(Dialog)
+  private dialogService = inject(MatDialog);
   public horaAtual!: number;
   public condicaoClime!: string;
   private destroy$ = new Subject<void>;
   public weatherDatas!: WeatherDatas;
 
   searchCityForm = this.formBuilder.group({
-    city_name: ['Aracaju', Validators.required]
+    city_name: ['', Validators.required]
   })
 
   public getTimeNow(): void{
@@ -64,16 +67,23 @@ export class HomeComponent implements OnDestroy{
           this.weatherDatas.main.temp_max = Math.round(this.weatherDatas.main.temp_max - 273)
           this.weatherDatas.main.temp_min = Math.round(this.weatherDatas.main.temp_min - 273)
           this.condicaoClime = this.weatherDatas.weather[0].description
-          console.log(this.condicaoClime)
-          this.dialogService.open(WeatherCardComponent)
+          this.getTimeNow()
+          this.handleOpenModal()
+          this.handleCloseModal()
         }
       })
+
       this.searchCityForm.reset();
     }
-
-    this.getTimeNow()
   }
 
+  handleOpenModal(): void{
+    this.dialogService.open(WeatherCardComponent)
+  }
+
+  handleCloseModal(): void{
+    this.dialogService.closeAll()
+  }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

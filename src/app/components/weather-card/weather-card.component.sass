@@ -10,8 +10,12 @@ body
   height: 100vh
 
   .card
+    display: flex
+    align-items: center
+    flex-direction: column
     border-radius: 20px
     background-color: #008080
+    margin-top: 5%
     width: 500px
     height: 700px
 
@@ -21,7 +25,6 @@ body
       align-items: center
       width: 280px
       margin-top: 5%
-      margin-left: 23%
 
     span
       display: flex
@@ -43,14 +46,13 @@ body
 
   .info
     display: flex
-    justify-content: space-evenly
-    text-align: center
+    justify-content: center
+    gap: 120px
 
     p
       color: #fff
       font-size: 20px
       font-weight: bolder
-      margin-left: 20%
 
     .barometro
       gap: 5px
@@ -58,17 +60,12 @@ body
       flex-direction: column
 
       img
-        margin-right: 1px
         width: 50px
 
     .temps
-      gap: 5px
+      gap: 6px
       display: flex
       flex-direction: column
 
       img
-        margin-left: 20px
         width: 50px
-
-
-

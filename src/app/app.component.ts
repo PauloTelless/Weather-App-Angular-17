@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './components/page/home/home.component';
-import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { WeatherCardComponent } from './components/weather-card/weather-card.component';
 
@@ -12,12 +11,12 @@ import { WeatherCardComponent } from './components/weather-card/weather-card.com
   imports: [
     RouterOutlet,
     HomeComponent,
-    MatInputModule,
     HttpClientModule,
     WeatherCardComponent
   ],
   providers:[
-    HttpClient
+    HttpClient,
+
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
