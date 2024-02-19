@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit,OnDestroy{
   private weatherService = inject(WeatherService);
   private dialogService = inject(MatDialog);
   public horaAtual!: number;
-  public condicaoClime!: string;
+  public condicaoClima!: string;
   private destroy$ = new Subject<void>;
   public weatherDatas!: WeatherDatas;
 
@@ -62,19 +62,18 @@ export class HomeComponent implements OnInit,OnDestroy{
         )
       ).subscribe({
         next: (response) => {
-          this.getTimeNow()
-          this.weatherDatas = response
-          console.log(this.weatherDatas)
-          this.weatherDatas.main.temp = Math.round(this.weatherDatas.main.temp - 273)
-          this.weatherDatas.wind.speed = Math.round(this.weatherDatas.wind.speed * 3.6)
-          this.weatherDatas.main.temp_max = Math.round(this.weatherDatas.main.temp_max - 273)
-          this.weatherDatas.main.temp_min = Math.round(this.weatherDatas.main.temp_min - 273)
-          this.condicaoClime = this.weatherDatas.weather[0].description
-          this.handleOpenModal()
-          this.handleCloseModal()
+          this.getTimeNow();
+          this.weatherDatas = response;
+          this.weatherDatas.main.temp = Math.round(this.weatherDatas.main.temp - 273);
+          this.weatherDatas.wind.speed = Math.round(this.weatherDatas.wind.speed * 3.6);
+          this.weatherDatas.main.temp_max = Math.round(this.weatherDatas.main.temp_max - 273);
+          this.weatherDatas.main.temp_min = Math.round(this.weatherDatas.main.temp_min - 273);
+          this.condicaoClima = this.weatherDatas.weather[0].description;
+          this.handleOpenModal();
+          this.handleCloseModal();
         },
         error: () => {
-          this.handleOpenModalError()
+          this.handleOpenModalError();
         }
       })
     }
@@ -83,15 +82,15 @@ export class HomeComponent implements OnInit,OnDestroy{
   }
 
   handleOpenModal(): void{
-    this.dialogService.open(WeatherCardComponent)
+    this.dialogService.open(WeatherCardComponent);
   }
 
   handleCloseModal(): void{
-    this.dialogService.closeAll()
+    this.dialogService.closeAll();
   }
 
   handleOpenModalError(): void{
-    this.dialogService.open(NotFoundComponent)
+    this.dialogService.open(NotFoundComponent);
   }
 
   ngOnDestroy(): void {

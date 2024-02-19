@@ -10,15 +10,13 @@
         if (city_name_lengh >= 10 && city_name_lengh <= 13 && window.matchMedia('(max-width: 768px)'))  {
           city_name.style.fontSize = '45px'
 
-        }
-        if (city_name_lengh > 13 && window.matchMedia('(max-width: 768px)')) {
-          city_name.style.fontSize = '15px'
+        } else if (city_name_lengh > 13 && window.matchMedia('(max-width: 768px)')) {
+          city_name.style.fontSize = '8px'
 
+        } else if (city_name_lengh > 13){
+          city_name.style.fontSize = '35px'
         }
 
-        else {
-          city_name.style.fontSize = '60px'
-        }
       </script>
 
       <h1>{{weatherDatasInput.main.temp}}°C</h1>
@@ -70,7 +68,7 @@
         }
       }
       <div class="info-weather">
-        <h4>{{weatherDatasInput.weather[0].description}}</h4>
+        <h4>{{weatherDatasInput.weather[0].description.toUpperCase()}}</h4>
       </div>
       <div class="info">
       <div class="barometro">
