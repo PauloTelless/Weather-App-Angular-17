@@ -16,6 +16,7 @@ import { WeatherDatas } from '../../../models/interfaces/WeatherData';
 import { WeatherCardComponent } from '../../weather-card/weather-card.component';
 
 import { Subject, takeUntil } from 'rxjs';
+import { NotFoundComponent } from '../../not-found/not-found.component';
 
 @Component({
   selector: 'app-home',
@@ -72,9 +73,8 @@ export class HomeComponent implements OnInit,OnDestroy{
           this.handleCloseModal()
         }
       })
-
-      this.searchCityForm.reset();
     }
+    this.searchCityForm.reset();
   }
 
   handleOpenModal(): void{
@@ -83,6 +83,10 @@ export class HomeComponent implements OnInit,OnDestroy{
 
   handleCloseModal(): void{
     this.dialogService.closeAll()
+  }
+
+  handleOpenModalError(): void{
+    this.dialogService.open(NotFoundComponent)
   }
   ngOnDestroy(): void {
     this.destroy$.next();

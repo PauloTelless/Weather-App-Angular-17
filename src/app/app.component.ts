@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './components/page/home/home.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { WeatherCardComponent } from './components/weather-card/weather-card.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { WeatherCardComponent } from './components/weather-card/weather-card.com
     RouterOutlet,
     HomeComponent,
     HttpClientModule,
-    WeatherCardComponent
+    WeatherCardComponent,
+    NotFoundComponent
   ],
   providers:[
     HttpClient,
