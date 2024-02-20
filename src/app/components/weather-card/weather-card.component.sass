@@ -80,11 +80,19 @@ body
       img
         width: 50px
 
+@media screen and ( max-width: 768px)
+  body
+    .card
+      max-width: 320px
+
 @media screen and (max-width: 900px)
   body
     .card
-      max-width: 380px
+      max-width: 330px
       span
+        display: flex
+        flex-direction: column
+        text-align: center
         font-size: 30px
 
 @media screen and (max-width: 1400px)

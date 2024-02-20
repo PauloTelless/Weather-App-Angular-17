@@ -1,4 +1,4 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnDestroy, inject } from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +15,7 @@ import { WeatherDatas } from '../../../models/interfaces/WeatherData';
 
 import { WeatherCardComponent } from '../../weather-card/weather-card.component';
 
-import { Subject, takeUntil } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { NotFoundComponent } from '../../not-found/not-found.component';
 import { WeatherInfoWindComponent } from '../../weather-info-wind/weather-info-wind.component';
 
@@ -35,14 +35,13 @@ import { WeatherInfoWindComponent } from '../../weather-info-wind/weather-info-w
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass'
 })
-export class HomeComponent implements OnDestroy{
-
+export class HomeComponent{
+  private destroyedRef = inject(DestroyRef);
   private formBuilder = inject(FormBuilder);
   private weatherService = inject(WeatherService);
   private dialogService = inject(MatDialog);
   public horaAtual!: number;
   public condicaoClima!: string;
-  private destroy$ = new Subject<void>;
   public weatherDatas!: WeatherDatas;
   public modal!: boolean;
 
@@ -58,8 +57,8 @@ export class HomeComponent implements OnDestroy{
     this.modal = false
     if (this.searchCityForm.valid && this.searchCityForm.value) {
       this.weatherService.getWeatherDatas(this.searchCityForm.value.city_name as string).pipe(
-        takeUntil(
-          this.destroy$
+        takeUntilDestroyed(
+          this.destroyedRef
         )
       ).subscribe({
         next: (response) => {
@@ -93,10 +92,5 @@ export class HomeComponent implements OnDestroy{
 
   handleOpenModalError(): void{
     this.dialogService.open(NotFoundComponent);
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 }
