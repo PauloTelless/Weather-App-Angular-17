@@ -80,11 +80,11 @@
       <div class="info">
       <div class="barometro">
         <img src="../../../assets/img/vento.png" (click)="handleOpenModalWind()"><p>{{weatherDatasInput.wind.speed}}Km/h</p>
-        <img src="../../../assets/img/umidade.png"><p>{{weatherDatasInput.main.humidity}}%</p>
+        <img src="../../../assets/img/umidade.png" (click)="handleOpenModalHumidity()"><p>{{weatherDatasInput.main.humidity}}%</p>
       </div>
       <div class="temps">
-        <img src="../../../assets/img/max_temp.png" alt=""><p>{{weatherDatasInput.main.temp_max}}°C</p>
-        <img src="../../../assets/img/min_temp.png" alt=""><p>{{weatherDatasInput.main.temp_min}}°C</p>
+        <img src="../../../assets/img/max_temp.png" (click)="handleOpenModalTempMax()"><p>{{weatherDatasInput.main.temp_max}}°C</p>
+        <img src="../../../assets/img/min_temp.png" (click)="handleOpenModalTempMin()"><p>{{weatherDatasInput.main.temp_min}}°C</p>
       </div>
       </div>
     </div>

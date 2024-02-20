@@ -4,6 +4,9 @@ import { WeatherDatas } from '../../models/interfaces/WeatherData';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { WeatherInfoWindComponent } from '../weather-info-wind/weather-info-wind.component';
+import { WeatherInfoHumidityComponent } from '../weather-info-humidity/weather-info-humidity.component';
+import { WeatherInfoTempMaxComponent } from '../weather-info-temp-max/weather-info-temp-max.component';
+import { WeatherInfoTempMinComponent } from '../weather-info-temp-min/weather-info-temp-min.component';
 
 @Component({
   selector: 'app-weather-card',
@@ -12,7 +15,10 @@ import { WeatherInfoWindComponent } from '../weather-info-wind/weather-info-wind
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
-    WeatherInfoWindComponent
+    WeatherInfoWindComponent,
+    WeatherInfoHumidityComponent,
+    WeatherInfoTempMaxComponent,
+    WeatherInfoTempMinComponent
   ],
   templateUrl: './weather-card.component.html',
   styleUrl: './weather-card.component.sass'
@@ -29,7 +35,15 @@ export class WeatherCardComponent{
     this.dialogService.open(WeatherInfoWindComponent)
   }
 
-  handleCloseModalWind(){
-    this.dialogService.closeAll()
+  handleOpenModalTempMax(){
+    this.dialogService.open(WeatherInfoTempMaxComponent)
+  }
+
+  handleOpenModalTempMin(){
+    this.dialogService.open(WeatherInfoTempMinComponent)
+  }
+
+  handleOpenModalHumidity(){
+    this.dialogService.open(WeatherInfoHumidityComponent)
   }
 }
