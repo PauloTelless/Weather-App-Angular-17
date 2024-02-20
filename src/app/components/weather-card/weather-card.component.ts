@@ -3,7 +3,6 @@ import { Component, Input, Output, inject} from '@angular/core';
 import { WeatherDatas } from '../../models/interfaces/WeatherData';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { NotFoundComponent } from '../not-found/not-found.component';
 import { WeatherInfoWindComponent } from '../weather-info-wind/weather-info-wind.component';
 
 @Component({

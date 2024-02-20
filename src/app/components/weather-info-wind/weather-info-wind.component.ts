@@ -4,7 +4,9 @@ import { WeatherDatas } from '../../models/interfaces/WeatherData';
 @Component({
   selector: 'app-weather-info-wind',
   standalone: true,
-  imports: [],
+  imports: [
+
+  ],
   templateUrl: './weather-info-wind.component.html',
   styleUrl: './weather-info-wind.component.sass'
 })
