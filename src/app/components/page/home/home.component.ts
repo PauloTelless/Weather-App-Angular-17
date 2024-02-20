@@ -17,6 +17,7 @@ import { WeatherCardComponent } from '../../weather-card/weather-card.component'
 
 import { Subject, takeUntil } from 'rxjs';
 import { NotFoundComponent } from '../../not-found/not-found.component';
+import { WeatherInfoWindComponent } from '../../weather-info-wind/weather-info-wind.component';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,8 @@ import { NotFoundComponent } from '../../not-found/not-found.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
-    WeatherCardComponent
+    WeatherCardComponent,
+    WeatherInfoWindComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass'
@@ -42,6 +44,7 @@ export class HomeComponent implements OnDestroy{
   public condicaoClima!: string;
   private destroy$ = new Subject<void>;
   public weatherDatas!: WeatherDatas;
+  public modal!: boolean;
 
   searchCityForm = this.formBuilder.group({
     city_name: ['', Validators.required]
@@ -52,6 +55,7 @@ export class HomeComponent implements OnDestroy{
     this.horaAtual = date.getHours() as number
   }
   public handleSearchCity(){
+    this.modal = false
     if (this.searchCityForm.valid && this.searchCityForm.value) {
       this.weatherService.getWeatherDatas(this.searchCityForm.value.city_name as string).pipe(
         takeUntil(
