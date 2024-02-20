@@ -2,18 +2,8 @@
   <body>
     <div class="card">
       <span id="city_name">{{weatherDatasInput.name}}</span>
-
-      <script>
-        const city_name = document.getElementById('city_name')
-        const city_name_lengh = city_name.textContent.length;
-
-        if (city_name_lengh >= 17 && window.matchMedia('(max-width: 900px)'))  {
-          city_name.style.fontSize = '25px'
-        }
-
-      </script>
-
       <h1>{{weatherDatasInput.main.temp}}°C</h1>
+
       @if(horaAtualInput >= 18 || horaAtualInput <= 5){
         @if(condicaoClimeInput == 'algumas nuvens'){
           <img src="../../../assets/img/noite_nuvens.png">
@@ -68,6 +58,7 @@
           <img src="../../../assets/img/sol.png">
         }
       }
+
       <div class="info-weather">
         <h4>{{weatherDatasInput.weather[0].description.toUpperCase()}}</h4>
       </div>
