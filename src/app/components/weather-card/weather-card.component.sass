@@ -43,7 +43,7 @@ body
       align-items: center
       justify-content: center
       font-weight: bolder
-      font-size: 60px
+      font-size: 50px
 
     h1
       display: flex
@@ -80,14 +80,29 @@ body
       img
         width: 50px
 
-@media screen and (max-width: 768px)
+@media screen and (max-width: 1900px)
   body
-    padding-left: 4%
-    padding-right: 4%
-    margin-bottom: 20%
     .card
       img
-        padding-top: 4%
+        margin-top: 2%
+      span
+        display: flex
+        flex-direction: column
+        font-size: 40px
+        text-align: center
+
+@media screen and (max-width: 1400px)
+  body
+    .card
+      height: 750px
+      margin-top: 15%
+      img
+        margin-top: 0.5%
+      span
+        font-size: 40px
+        display: flex
+        flex-direction: column
+        text-align: center
 
 @media screen and (max-width: 900px)
   body
@@ -100,25 +115,11 @@ body
         text-align: center
         font-size: 30px
 
-@media screen and (max-width: 1400px)
+@media screen and (max-width: 768px)
   body
-    .card
-      height: 750px
-      margin-top: 15%
-      img
-        margin-top: 0.5%
-      span
-        display: flex
-        flex-direction: column
-        text-align: center
-
-@media screen and (max-width: 1900px)
-  body
+    padding-left: 4%
+    padding-right: 4%
+    margin-bottom: 20%
     .card
       img
-        margin-top: 2%
-      span
-        font-size: 40px
-        display: flex
-        flex-direction: column
-        text-align: center
+        padding-top: 4%
