@@ -1,7 +1,9 @@
 
   <body>
     <div class="card">
-      <span>{{weatherDatasInput.name}}</span>
+      @if(weatherDatasInput.name && weatherDatasInput){
+        <span>{{weatherDatasInput.name}}</span>
+      }
       <h1>{{weatherDatasInput.main.temp}}°C</h1>
 
       @if(horaAtualInput >= 18 || horaAtualInput <= 5){

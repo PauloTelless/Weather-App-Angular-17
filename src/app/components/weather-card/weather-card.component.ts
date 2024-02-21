@@ -1,5 +1,5 @@
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
-import { Component, Input, Output, inject} from '@angular/core';
+import { Component, Input, OnInit, Output, inject} from '@angular/core';
 import { WeatherDatas } from '../../models/interfaces/WeatherData';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,16 +14,15 @@ import { WeatherInfoTempMinComponent } from '../weather-info-temp-min/weather-in
   imports: [
     MatCardModule,
     MatButtonModule,
-    MatDialogModule,
-    WeatherInfoWindComponent,
-    WeatherInfoHumidityComponent,
-    WeatherInfoTempMaxComponent,
-    WeatherInfoTempMinComponent
+    MatDialogModule
   ],
   templateUrl: './weather-card.component.html',
   styleUrl: './weather-card.component.sass'
 })
-export class WeatherCardComponent{
+export class WeatherCardComponent implements OnInit{
+  ngOnInit(): void {
+    console.log('Recebendo do pai', this.weatherDatasInput);
+  }
 
   private dialogService = inject(MatDialog);
 

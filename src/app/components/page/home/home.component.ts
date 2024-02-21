@@ -64,6 +64,7 @@ export class HomeComponent{
         next: (response) => {
           this.getTimeNow();
           this.weatherDatas = response;
+          console.log('Pai', this.weatherDatas)
           this.weatherDatas.main.temp = Math.round(this.weatherDatas.main.temp - 273);
           this.weatherDatas.wind.speed = Math.round(this.weatherDatas.wind.speed * 3.6);
           this.weatherDatas.main.temp_max = Math.round(this.weatherDatas.main.temp_max - 273);
@@ -81,9 +82,10 @@ export class HomeComponent{
     this.searchCityForm.reset();
   }
 
-
   handleOpenModal(): void{
-    this.dialogService.open(WeatherCardComponent);
+    if (this.weatherDatas) {
+      this.dialogService.open(WeatherCardComponent);
+    }
   }
 
   handleCloseModal(): void{
